@@ -32,7 +32,7 @@ packages {
     'gluon-respondd',
     'gluon-setup-mode',
     'gluon-status-page',
-    'gluon-ssid-changer',
+    'ffac-ssid-changer',
     'respondd-module-airtime',
     'iwinfo',
 }
