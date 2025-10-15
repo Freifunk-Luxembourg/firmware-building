@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+set -x
 USER_DIR=/home/user
 
 GLUON_DIR=$USER_DIR/gluon
