@@ -10,22 +10,22 @@ STABLE_SITE=$SITE_DIR/stable/site
 
 # $1: site directory
 set_site_directory() {
-    pushd $GLUON_DIR
+    pushd "$GLUON_DIR"
 
     # if site file exists, remove it
     if [ -a site ]; then
         unlink site
     fi
-    ln -s $1
+    ln -s "$1"
 
     popd
 }
 
 build() {
-    pushd $GLUON_DIR
+    pushd "$GLUON_DIR"
 
     for TARGET in $(make list-targets); do
-        make -j16 GLUON_TARGET=$TARGET
+        make -j16 GLUON_TARGET="$TARGET"
     done
 
     popd
@@ -33,9 +33,9 @@ build() {
 
 # $1: autoupdater branch
 move_output_images() {
-    pushd $GLUON_DIR
+    pushd "$GLUON_DIR"
 
-    mv output/images output-images-$1
+    mv output/images "output-images-$1"
 
     popd
 }
@@ -73,21 +73,9 @@ pushd $GLUON_DIR
 
 if [ -d $GLUON_DIR/output/images ]; then
     echo "Error: output images directory contains images. Please remove them before building."
-    echo "Delete `gluon/output/images` directory and try again."
+    echo "Delete 'gluon/output/images' directory and try again."
     exit 1
 fi
-
-set_site_directory() {
-    echo "Linking $1"
-}
-
-build() {
-    echo "Building images"
-}
-
-move_output_images() {
-    echo "Moving output images to output-images-$1"
-}
 
 if [ -n "$BUILD_EXPERIMENTAL" ]; then
     set_site_directory $EXPERIMENTAL_SITE
