@@ -29,6 +29,8 @@ build() {
         make -j16 GLUON_TARGET="$TARGET"
     done
 
+    make manifest
+
     popd
 }
 
